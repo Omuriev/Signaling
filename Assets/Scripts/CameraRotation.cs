@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class CameraRotation : MonoBehaviour
 {
-    private readonly string MouseX = "Mouse X";
-    private readonly string MouseY = "Mouse Y";
+    private const string MouseX = "Mouse X";
+    private const string MouseY = "Mouse Y";
 
     [SerializeField] private float _speed;
     [SerializeField] private Transform _camera;

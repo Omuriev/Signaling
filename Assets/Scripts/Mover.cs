@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Mover : MonoBehaviour
 {
-    private readonly string Horizontal = "Horizontal";
-    private readonly string Vertical = "Vertical";
+    private const string Horizontal = "Horizontal";
+    private const string Vertical = "Vertical";
 
     [SerializeField] private float _speed;
 
