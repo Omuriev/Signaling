@@ -5,37 +5,10 @@ public class Signaling : MonoBehaviour
 {
     [SerializeField] private AudioSource _audioSource;
 
-    private float _maxVolumeValue = 1.0f;
-    private float _minVolumeValue = 0.0f;
-    private Coroutine _ChangeVolumeCoroutine;
+    public float MaxVolumeValue { get; private set; } = 1.0f;
+    public float MinVolumeValue { get; private set; } = 0.0f;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.TryGetComponent(out Player player))
-        {
-            if (_ChangeVolumeCoroutine != null)
-            {
-                StopCoroutine(_ChangeVolumeCoroutine);
-            }
-
-            _ChangeVolumeCoroutine = StartCoroutine(ChangeVolume(_maxVolumeValue));
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.TryGetComponent(out Player player))
-        {
-            if (_ChangeVolumeCoroutine != null)
-            {
-                StopCoroutine(_ChangeVolumeCoroutine);
-            }
-
-            _ChangeVolumeCoroutine = StartCoroutine(ChangeVolume(_minVolumeValue));
-        }
-    }
-
-    private IEnumerator ChangeVolume(float targetVolumeValue)
+    public IEnumerator ChangeVolume(float targetVolumeValue)
     {
         float _changeVolumeStepValue = 0.1f;
         _audioSource.Play();
@@ -47,7 +20,7 @@ public class Signaling : MonoBehaviour
             yield return null;
         }
 
-        if (_audioSource.volume == _minVolumeValue)
+        if (_audioSource.volume == MinVolumeValue)
         {
             _audioSource.Stop();
 
